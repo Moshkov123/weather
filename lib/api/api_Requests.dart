@@ -19,24 +19,21 @@ class WeatherApi {
         throw Exception("Failed to load weather");
       }
     } catch (e) {
-      print('Exception: $e'); // Add this line
       throw Exception("Failed to load weather");
     }
   }
   Future<Apiweek> getWeeklyForecast(String location) async {
-    print(location);
+
     String apiUrl =
         "https://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$location&days=7&hour=13&aqi=no&alerts=no";
     try {
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
-        print(response.body); // Print the response body to the console
         return Apiweek.fromJson(jsonDecode(response.body));
       } else {
         throw Exception("Failed to load weather");
       }
     } catch (e) {
-      print('Exception: $e');
       throw Exception("Failed to load weather");
     }
   }
